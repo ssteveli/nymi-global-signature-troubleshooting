@@ -168,12 +168,7 @@ public class NymiUtility extends Activity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.i(TAG, "initializing library");
-                int i = Ncl.InitiateLibrary(context, NymiConfig.NYMULATER_IP_ADDRESS, 9089);
-                logUIMessage(String.format("Ncl.InitiateLibrary, ip=%s, port=%d, result=%d", NymiConfig.NYMULATER_IP_ADDRESS, 9089, i));
-
-                Log.i(TAG, "Ncl.init()");
-                boolean b = Ncl.init(nclCallback, null, "FitPay", NclMode.NCL_MODE_DEV, path + "/nmyilog.err");
+                boolean b = Ncl.init(context, nclCallback, null, "FitPay", NymiConfig.NYMULATER_IP_ADDRESS, 9089);
                 logUIMessage(String.format("Ncl.init() called, result=%s", String.valueOf(b)));
             }
         }).start();
